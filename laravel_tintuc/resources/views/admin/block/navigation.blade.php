@@ -48,7 +48,7 @@
                     <!-- /input-group -->
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    <a href="admin/mail/them"><i class="fa fa-paper-plane fa-fw"></i> Gửi mail quảng cáo</a>
                 </li>
                 <li>
                     <a href="admin/theloai/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Thể loại<span class="fa arrow"></span></a>

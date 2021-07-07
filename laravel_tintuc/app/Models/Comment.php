@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     use HasFactory;
-    protected $table ="Comment";
+    protected $table ="comment";
 
     public function tintuc(){
         return $this->belongsTo('App\Models\TinTuc', 'idTinTuc', 'id');

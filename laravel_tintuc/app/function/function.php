@@ -18,6 +18,24 @@ function changeTitle($str,$strSymbol='-',$case=MB_CASE_LOWER){// MB_CASE_UPPER /
 	$str = preg_replace('/[\W|_]+/',$strSymbol,$str);
 	return $str;
 }
+// viết đậm các tự truyên vào 
+function boldReplace($search, $subject){
+
+	// tờ khóa thường
+	$search = strtolower( $search);
+
+	//Nội dung từ khóa thường 
+	$subject =  str_replace($search, "<b style='color:red;'>$search</b>" , $subject);
+
+	// tờ khóa in
+	$search = strtoupper( $search);
+
+	//Nội dung từ khóa in 
+	$subject =  str_replace($search, "<b style='color:red;'>$search</b>" , $subject);
+
+    return $subject;
+}
+
 
 function stripUnicode($str){
 	if(!$str) return '';

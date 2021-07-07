@@ -17,7 +17,7 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' =>'required'
         ],[
-            'email.required' =>'Vui lồng nhập email',
+            'email.required' =>'Vui lòng nhập email',
             'email.email'   =>'Vui lòng nhập đúng cú pháp email',
             'password.required' =>'Vui lòng nhập mật khẩu'
         ] );
@@ -97,7 +97,6 @@ class UserController extends Controller
              ]);
             $user->password = bcrypt($req->password);
          }
-         $user->password = bcrypt($req->password);
          $user->save();
          // thong bao
          return redirect('admin/user/them')->with('thongbao','Sửa thành công');
