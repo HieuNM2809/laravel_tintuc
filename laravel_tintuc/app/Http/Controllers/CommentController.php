@@ -30,7 +30,7 @@ class CommentController extends Controller
             echo  '<img class="media-object" src="http://placehold.it/64x64">';
             echo  '</a>';
             echo  '<div class="media-body">';
-            echo  '<h4 class="media-heading">';
+            echo  '<h4 class="media-heading"  style="font-weight: 600;">';
             echo   $ca->user->name;
             echo   '<small> Ngày '.$ca->created_at .'giờ</small>';
             echo '</h4>';

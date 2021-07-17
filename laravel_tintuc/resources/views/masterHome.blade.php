@@ -35,8 +35,14 @@
     <script src="https://sp.zalo.me/plugins/sdk.js"></script>
 
     <!-- link ckeditor -->
-    <script type="text/javascript" language="javascript" src="asset_admin/ckeditor/ckeditor.js" ></script>
+    {{-- ckediter Full Package --}}
+    {{-- <script type="text/javascript" language="javascript" src="asset_admin/ckeditor/ckeditor.js" ></script> --}}
+    
+    {{-- ckediter Basic Package --}}
+    <script src="//cdn.ckeditor.com/4.16.1/basic/ckeditor.js"></script>
 
+    {{-- recaptcha --}}
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 </head>
 

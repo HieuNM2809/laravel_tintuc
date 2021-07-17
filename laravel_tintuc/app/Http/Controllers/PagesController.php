@@ -10,36 +10,58 @@ use App\Models\LoaiTin;
 use App\Models\TinTuc;
 use App\Models\Slide;
 use App\Models\User;
+use App\Models\PhanHoi;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\Captcha;
 
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Support\Facades\Cache;
+
+use App\Events\RegisteredEvent;
 
 class PagesController extends Controller
 {
     public function __construct()
     {
-        view()->share('theloai' ,TheLoai::all());
-        view()->share('slide' ,Slide::all());
+        $theLoai = Cache::store('redis')->remember('theLoaiAll', 600, function () {
+            return TheLoai::where('Xoa',0 )->get();
+        });
+        $slide = Cache::store('redis')->remember('slideAll', 600, function () {
+            return Slide::where('Xoa',0 )->get();
+        });
+        view()->share('theloai' ,  $theLoai );
+        view()->share('slide' ,$slide);
     }
 
     //
     public function trangchu(){
-        return view('pages.trangchu');
+        $ghimTin = TinTuc::where('ghimTin','ghim')->orderBy('updated_at','DESC')->first();
+        return view('pages.trangchu', ['ghimTin' =>$ghimTin]);
     }
     public function loaitin($id){
-         $loaitin =  LoaiTin::find($id);
-         $tintuc = TinTuc::where('idLoaiTin','=',$id)->paginate(5);
+
+        $loaitin =  LoaiTin::find($id);
+        
+        $tintuc = TinTuc::where('idLoaiTin','=',$id)->paginate(5);
+        
         return view('pages.loaitin',[
             'loaitin'=>$loaitin,
             'tintuc'=>$tintuc]
         );
     }
     public function tintuc($id){
-       
-        $tintuc =TinTuc::find($id);
-        $tinnoibat =TinTuc::where('NoiBat',1)->orderBy('created_at','DESC')->take(4)->get();
-        $tinlienquan =TinTuc::where('idLoaiTin',$tintuc->idLoaiTin)->orderBy('created_at','DESC')->take(4)->get();
+        // cache
+        $tintuc = Cache::store('redis')->remember('tintuc'.$id, 600 , function () use ($id) {
+            return TinTuc::find($id);
+        });
+        $tinnoibat = Cache::store('redis')->remember('tinnoibat'.$id, 600 , function () use ($id) {
+          return TinTuc::where('NoiBat',1)->orderBy('created_at','DESC')->take(4)->get();
+        });
+        $tinlienquan = Cache::store('redis')->remember('tinlienquan'.$id, 600 , function () use ($id,$tintuc) {
+            return TinTuc::where('idLoaiTin',$tintuc->idLoaiTin)->orderBy('created_at','DESC')->take(4)->get();
+        });
+
+        //view
         return view('pages.tintuc',[
             'tintuc'      => $tintuc, 
             'tinnoibat'   =>$tinnoibat ,
@@ -76,7 +98,8 @@ class PagesController extends Controller
             'name' => 'required|min:2|max:32',
             'email' => 'email|required|unique:users,email',
             'password' =>'required|min:6|max:32',
-            'passwordAgain'=>'required|same:password'
+            'passwordAgain'=>'required|same:password',
+            'g-recaptcha-response' =>new Captcha()
         ], [
             'name.required' =>'Vui lòng nhập tên',
             'name.min'   => 'Tên tối thiểu 2 kí tự và nhiều nhất 32 kí tự',
@@ -91,13 +114,19 @@ class PagesController extends Controller
             'passwordAgain.same' =>'Nhập lại password sai'
         ]); 
 
+        // lưu thông tin
          $user = new  User();
          $user->name = $req->name;
          $user->email = $req->email;
-         $user->role = 0;
+         $user->role = 'user';
          $user->password = bcrypt($req->password);
          $user->save();
 
+        // sự kiện gửi mail
+        $pass = $req->password;
+         event(new RegisteredEvent($user, $pass));
+
+        //thong bao 
          return redirect('dangky')->with('thongbao','Tạo tài khoản thành công !!');
     }
 
@@ -159,13 +188,23 @@ class PagesController extends Controller
          return redirect('nguoidung')->with('thongbao','Sửa thành công');
     }
 
-
-
-
-    public function phanhoi(){
-        echo "da zo phan hoi";
+    public function getphanhoi(){
+        return view('pages.phanhoi');
     }
+    public function postphanhoi(Request $req){
+        $this->validate($req,[
+            'txtPhanHoi' =>'required|min:12'
+        ],[
+            'txtPhanHoi.required' =>'Vui lòng nhập phản hồi',
+            'txtPhanHoi.min'   =>'Vui lòng nhập ít nhất 12 ký tự'
+        ]);
+        $phanhoi =new PhanHoi();
+        $phanhoi->idUser = Auth::user()->id;
+        $phanhoi->NoiDung = $req->txtPhanHoi;
+        $phanhoi->save();
 
+        return redirect('phanhoi')->with('thongbao', 'Gửi thành công, cảm ơn bạn đã phản hồi !!');
+    }
 
 
 }

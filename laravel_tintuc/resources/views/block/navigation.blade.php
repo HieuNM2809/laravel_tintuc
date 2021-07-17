@@ -33,11 +33,10 @@
 
             <form action="timkiem" method="get" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                  <input type="text" name="key" class="form-control" placeholder="Nội dung tìm kiếm">
+                  <input type="text" onfocus="focusCom()"  name="key" class="form-control" autocomplete="off" placeholder="Nội dung tìm kiếm">
                 </div>
                 <button type="submit"  class="btn btn-default">Tìm kiếm</button>
             </form>
-
             <ul class="nav navbar-nav pull-right">
                 @if(!isset($user_login))
                     <li>
@@ -67,4 +66,10 @@
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
+   
 </nav>
+
+
+
+
+

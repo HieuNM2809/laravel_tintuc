@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\LoaiTin;
 use App\Models\TheLoai;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+
 class LoaiTinController extends Controller
 {
       // get
     public function getDanhSach(){
+        
+        $loaitin = LoaiTin::where('Xoa',0)->get();
         return view('admin.loaitin.danhsach',
-          ['loaitin'=>LoaiTin::all()]
+           ['loaitin'=> $loaitin]
         );
     }
     public function getThem(){
@@ -70,7 +74,9 @@ class LoaiTinController extends Controller
         return redirect('admin/loaitin/sua/'.$id)->with('thongbao', 'Sửa thành công');
     }
     public function deleteXoa(Request $req, $id){
-        LoaiTin::find($id)->delete();
+        $loaiTin = LoaiTin::find($id);
+        $loaiTin->Xoa = 1;
+        $loaiTin->save();
         return redirect('admin/loaitin/danhsach')->with('thongbao', 'Xóa thành công');
     }
 }

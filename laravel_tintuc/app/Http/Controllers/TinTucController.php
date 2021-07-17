@@ -7,26 +7,29 @@ use App\Models\TinTuc;
 use App\Models\TheLoai;
 use App\Models\LoaiTin;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class TinTucController extends Controller
 {
 
     //get
     public function getDanhSach(){
-        $tintuc = TinTuc::all();
-        return view('admin.tintuc.danhsach', ['tintuc'=> $tintuc]);
+
+        $tintuc = TinTuc::where('TrangThai','public')->orWhere('TrangThai','notApprovedYet')->get();        return view('admin.tintuc.danhsach',
+            ['tintuc'=> $tintuc]
+        );
     }
     public function getThem(){
         return view('admin.tintuc.them',[
-            'theloai'=> TheLoai::all(),
-            'loaitin'=> LoaiTin::where('idTheLoai','1')->get()
+            'theloai'=> TheLoai::where('Xoa',0)->get(),
+            'loaitin'=> LoaiTin::where('idTheLoai','1')->where('Xoa',0)->get()
         ]);
     }
     public function getSua($id){
         return view('admin.tintuc.sua', [
             'tintuc'=>TinTuc::find($id),
-            'loaitin'=> LoaiTin::all(),
-            'theloai'=> TheLoai::all(),
+            'loaitin'=> LoaiTin::where('Xoa',0)->get(),
+            'theloai'=> TheLoai::where('Xoa',0)->get(),
         ]);
     }
 
@@ -133,7 +136,9 @@ class TinTucController extends Controller
 
     }
     public function deleteXoa( $id){
-        TinTuc::find($id)->delete();
+        $tinTuc =  TinTuc::find($id);
+        $tinTuc->TrangThai = 'unpublic';
+        $tinTuc->save();
         //thong bao
         return redirect('admin/tintuc/danhsach')->with('thongbao', 'Xóa thành công');
     }
@@ -142,5 +147,42 @@ class TinTucController extends Controller
         $loaitin = LoaiTin::where('idTheLoai',$id)->get();
         foreach ($loaitin as $lt )
            echo  "<option value='".$lt->id."'>".$lt->Ten."</option>";
+    }
+
+
+    // ghim tin 
+
+    public function getGhim(){
+        $tintuc = Cache::remember('tintucAll', 600 , function () {
+            return TinTuc::all();
+        });
+        return view('admin.tintuc.ghimTinTuc', ['tintuc' => $tintuc]);
+    }
+    public function  postGhim(Request $req){
+       $tinTuc = TinTuc::find($req->tintuc);
+       $tinTuc->ghimTin = 'ghim'; 
+       $tinTuc->save();
+       return redirect('admin/tintuc/ghim/them')->with('thongbao','Ghim tin thành công');
+    }
+
+    // tim kiem tin tuc theo id va ten
+    public function ajaxTinTuc($val){
+
+        $tinTuc = TinTuc::where('id','=',$val)->orWhere('TieuDe','like','%'.$val.'%')->get();
+        foreach ($tinTuc as $tt )
+           echo  "<option value='".$tt->id."'>".$tt->TieuDe."</option>";
+    }
+
+    // duyệt tin tức 
+    public function getDuyetTinTuc(){
+        $tinTuc = TinTuc::where('TrangThai','notApprovedYet')->get();
+        return view('admin.tintuc.duyetTinTuc', ['tintuc' => $tinTuc]);
+    }
+    public function postDuyetTinTuc($id){
+        $tinTuc =  TinTuc::find($id);
+        $tinTuc->TrangThai = 'public';
+        $tinTuc->save();
+        //thong bao
+        return redirect('admin/tintuc/duyettintuc')->with('thongbao', 'Duyệt thành công');
     }
 }

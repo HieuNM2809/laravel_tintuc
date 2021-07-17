@@ -1,9 +1,10 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-class TaoTheLoai extends Migration
+
+class TaoPhanhoi extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +13,11 @@ class TaoTheLoai extends Migration
      */
     public function up()
     {
-        Schema::create('TheLoai', function (Blueprint $table) {
+        Schema::create('phanhoi', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Ten');
-            $table->string('TenKhongDau');
-            $table->bit('Xoa')->default(0);
+            $table->integer('idUser')->unsigned();
+            $table->foreign('idUser')->references('id')->on('Users');
+            $table->string('NoiDung');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class TaoTheLoai extends Migration
      */
     public function down()
     {
-        Schema::drop('TheLoai');
+        Schema::dropIfExists('phanhoi');
     }
 }

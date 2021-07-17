@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 // middleware
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\HomeMiddleware;
+use App\Http\Middleware\RoleMiddleware;
 
 // use controller
 use App\Http\Controllers\TheLoaiController;
@@ -29,7 +30,6 @@ use App\Models\Slide;
 
 // cache
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Redis;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -91,6 +91,20 @@ Route::middleware(['AdminMiddleware'])->prefix('admin')->group(function () {
 
         // ajax
         Route::get('ajax/{id}',[TinTucController::class , 'ajaxLoaiTin']);
+
+        // ghim
+        Route::prefix('ghim')->group(function () {
+            // lay
+            Route::get('them',[TinTucController::class , 'getGhim']);
+            //them
+            Route::post('them',[TinTucController::class , 'postGhim']);
+        });
+        Route::get('ajaxTinTuc/{val}',[TinTucController::class , 'ajaxTinTuc']);
+
+        // duyet tin 
+        Route::middleware(['RoleMiddleware'])->get('duyettintuc',[TinTucController::class , 'getDuyetTinTuc']);
+        Route::middleware(['RoleMiddleware'])->get('duyettintuc/{id}',[TinTucController::class , 'postDuyetTinTuc']);
+       
     });
     Route::prefix('comment')->group(function () {
         //xoa
@@ -109,7 +123,7 @@ Route::middleware(['AdminMiddleware'])->prefix('admin')->group(function () {
         //xoa
         Route::get('xoa/{id}',[SlideController::class , 'deleteXoa']);
     });
-    Route::prefix('user')->group(function () {
+    Route::middleware(['RoleMiddleware'])->prefix('user')->group(function () {
         // lay
         Route::get('danhsach',[UserController::class , 'getDanhSach']);
         Route::get('them',[UserController::class , 'getThem']);
@@ -128,8 +142,8 @@ Route::middleware(['AdminMiddleware'])->prefix('admin')->group(function () {
         //them
         Route::post('them',[MailController::class , 'postThem']);
     });
-
 });
+
 
 // route home
 Route::middleware(['HomeShareMiddleware'])->prefix('')->group(function () {
@@ -148,7 +162,8 @@ Route::middleware(['HomeShareMiddleware'])->prefix('')->group(function () {
     Route::post('nguoidung', [PagesController::class , 'postnguoidung'] );
 
     //phan hoi
-    Route::get('phanhoi', [PagesController::class, 'phanhoi'])->middleware('HomeMiddleware');
+    Route::get('phanhoi', [PagesController::class, 'getphanhoi'])->middleware('HomeMiddleware');
+    Route::post('phanhoi', [PagesController::class, 'postphanhoi'])->middleware('HomeMiddleware');
 });
 
 //route dangky nguoi dung
@@ -165,37 +180,9 @@ Route::post('dangnhap', [PagesController::class , 'postdangnhap'] );
 
 
 Route::get('test', function () {
-    $start = microtime(true);
-    $tintuc = Cache::remember('tintuc', 60, function() {
-        echo "dazo<br>";
-        return TinTuc::all();
-    });
-    var_dump($tintuc);
-    $end = number_format((microtime(true) - $start),2);
-    echo "this page loaded in " . $end .'seconds';
-
-    
-});
-Route::get('sendmail', function () {
-    $ds =[
-        'nmhieucoder@gmail.com',
-        'nguyenminh@gmail.com'
-    ];
-    Mail::send('mail.thongbaotinmoi',['name'=>'hieu'], function ($message) use ($ds){
-        $message->from('nguyenminhhieu28092001k3@gmail.com', 'Hieu Minh');
-        $message->to($ds, 'HM');
-        $message->subject('Test HM');
-
-        // $message->attach( $req->file('txtFile')->getRealPath(), [
-        //     'as' => $req->file('txtFile')->getClientOriginalName(),
-        //     'mime' =>  $req->file('txtFile')->getMimeType()
-        //  ]);
-    });
-
-});
-Route::get('viewmail', function () {
-    // return view('mail.thongbaotinmoi');
-    echo now();
+   echo env('APP_DOMAIN');
 });
 
-
+Route::get('viewSendMail', function () {
+    return view('mail.thongBaoDangKyThanhCong');
+}); 

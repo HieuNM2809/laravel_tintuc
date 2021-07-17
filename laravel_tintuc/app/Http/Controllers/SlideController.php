@@ -4,11 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Slide;
+use Illuminate\Support\Facades\Cache;
+
 class SlideController extends Controller
 {
      // get
     public function getDanhSach(){
-        return view('admin.slide.danhsach',['slide'=> Slide::all()]);
+
+        $slide = Slide::where('Xoa',0)->get();
+        return view('admin.slide.danhsach',
+             ['slide'=> $slide]
+        );
     }
     public function getThem(){
         return view('admin.slide.them');
@@ -93,7 +99,9 @@ class SlideController extends Controller
         return redirect('admin/slide/sua/'.$id)->with('thongbao','Sửa thành công');
     }
     public function deleteXoa( $id){
-        Slide::find($id)->delete();
+        $slide =  Slide::find($id);
+        $slide->Xoa = 1;
+        $slide->save();
         return redirect('admin/slide/danhsach')->with('thongbao','Xóa thành công');
 
     }

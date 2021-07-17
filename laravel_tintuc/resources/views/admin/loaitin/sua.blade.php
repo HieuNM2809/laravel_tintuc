@@ -45,7 +45,7 @@
                             <label>Tên</label>
                             <input class="form-control" value="{{$loaitin->Ten}}" name="Ten" placeholder="Tên loại tin" />
                         </div>
-                        <button type="submit" class="btn btn-default">Thêm</button>
+                        <button type="submit" class="btn btn-default">Sửa</button>
                         <button type="reset" class="btn btn-default">Làm mới</button>
                     <form>
                 </div>

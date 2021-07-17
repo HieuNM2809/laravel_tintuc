@@ -49,6 +49,14 @@
 				    			<label>Nhập lại mật khẩu</label>
 							  	<input type="password" class="form-control" placeholder="Nhập lại mật khẩu" name="passwordAgain" aria-describedby="basic-addon1">
 							</div>
+                            <div style="margin-top:5px;">
+                                   {{-- recaptcha --}}
+                                   <div class="g-recaptcha" data-sitekey="{{env('CAPTCHA_KEY')}}"></div>
+                                     {{-- thong bao --}}
+                                    {{-- @if ($errors->has('g-recaptcha-response'))
+                                        <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+                                    @endif --}}
+                            </div>
 							<br>
 							<button type="submit" class="btn btn-default">Đăng ký
 							</button>

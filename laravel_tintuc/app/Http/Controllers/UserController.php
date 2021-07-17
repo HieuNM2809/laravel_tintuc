@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
@@ -22,7 +23,7 @@ class UserController extends Controller
             'password.required' =>'Vui lòng nhập mật khẩu'
         ] );
        if(Auth::attempt(['email'=> $req->email , 'password' =>$req->password])){
-          return redirect('admin/theloai/danhsach');
+             return redirect('admin/theloai/danhsach');
        }else{
           return redirect('admin/login')->with('thongbao','Đăng nhập thất bại !!!');
        }
@@ -34,7 +35,11 @@ class UserController extends Controller
     }
     // get
     public function getDanhSach(){
-        return view('admin.user.danhsach',['user'=> User::all()]);
+
+        $user =  User::where('Xoa',0)->get();
+        return view('admin.user.danhsach',
+           ['user'=> $user]
+        );
     }
     public function getThem(){
         return view('admin.user.them');
@@ -102,7 +107,9 @@ class UserController extends Controller
          return redirect('admin/user/them')->with('thongbao','Sửa thành công');
     }
     public function deleteXoa( $id){
-        User::find($id)->delete();
+        $user =  User::find($id);
+        $user->Xoa =1;
+        $user->save();
         return redirect('admin/user/danhsach')->with('thongbao','Xóa thành công');
     }
 }

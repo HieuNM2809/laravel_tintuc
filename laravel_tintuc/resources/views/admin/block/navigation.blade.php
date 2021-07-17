@@ -20,6 +20,13 @@
             <ul class="dropdown-menu dropdown-user">
                 <li><a ><i class="fa fa-user fa-fw"></i>{{$user_login_admin->name}}</a>
                 </li>
+                <li><a> <i class="fa fa-user fa-fw"></i>
+                    @if($user_login_admin->role == 'staff') 
+                         {{'Nhân viên'}}
+                    @else
+                         {{'Adminitrator'}}
+                    @endif
+                </a> </li>
                 <li><a href="admin/user/sua/{{$user_login_admin->id}}"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
@@ -49,6 +56,12 @@
                 </li>
                 <li>
                     <a href="admin/mail/them"><i class="fa fa-paper-plane fa-fw"></i> Gửi mail quảng cáo</a>
+                </li>
+                <li>
+                    <a href="admin/tintuc/ghim/them"><i class="fa fa-pinterest fa-fw"></i>Ghim tin tức</a>
+                </li>
+                <li>
+                    <a href="admin/tintuc/duyettintuc"><i class="fa fa-check-square fa-fw"></i>Duyệt tin tức</a>
                 </li>
                 <li>
                     <a href="admin/theloai/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Thể loại<span class="fa arrow"></span></a>

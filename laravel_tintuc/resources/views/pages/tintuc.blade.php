@@ -74,9 +74,13 @@
                                 <img class="media-object" src="http://placehold.it/64x64" alt="">
                             </a>
                             <div class="media-body">
-                                <h4 class="media-heading">
+                                <h4 class="media-heading" style="font-weight: 600;">
                                 {{ $cm->user->name}}
-                                    <small>Ngày {{$cm->created_at}} giờ</small>
+                                    <small>
+                                        {{$cm->created_at->format('H:i')}}
+                                        giờ, Ngày 
+                                        {{$cm->created_at->format('d-m-Y')}}
+                                    </small>
                                 </h4>
                                 {{$cm->NoiDung}}
                             </div>

@@ -32,16 +32,23 @@
                         @method('POST')
                         <div class="form-group">
                             <label>Tiêu đề</label>
-                            <input class="form-control" name="TieuDe" placeholder="Tiêu đề" />
+                            <input class="form-control" name="TieuDe"    value="{{old('TieuDe')}}" placeholder="Tiêu đề" />
                         </div>
                         <div class="form-group">
                             <label>Tóm tắt</label>
-                            <textarea id="demo"  name="TomTat"  class="form-control ckeditor" rows="3">
+                            <textarea id="demo"  name="TomTat"   class="form-control ckeditor" rows="3">
+                                {{old('TomTat')}}
                              </textarea>
                         </div>
                         <div class="form-group">
                             <label>Link</label>
-                            <input class="form-control" name="link" placeholder="Link" />
+                            <input class="form-control"    value="{{old('link')}}" name="link" placeholder="Link" />
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" name="nhapTaiKhoan" id="nhapTaiKhoan">
+                            <label for="nhapTaiKhoan">Nhập tài khoản gửi</label>
+                            <br/> <i style="color: red">Nhập nhiều tài khoản email cách nhau bằng dấu phẩy</i>
+                            <input type="text" disabled="" class="form-control" id="taikhoan" name="taiKhoan" placeholder="Tài khoản bạn muốn gửi" />
                         </div>
                         <button type="submit" class="btn btn-default">Gửi</button>
                         <button type="reset" class="btn btn-default">Làm mới</button>
@@ -53,4 +60,17 @@
         <!-- /.container-fluid -->
     </div>
     <!-- /#page-wrapper -->
+@endsection
+@section('script')
+    <script>
+        $(document).ready(function(){
+            $('#nhapTaiKhoan').change(function(){
+                if($(this).is(":checked")){
+                    $('#taikhoan').removeAttr('disabled');
+                }else{
+                    $('#taikhoan').attr('disabled',"")
+                }
+            });
+        });
+    </script>
 @endsection

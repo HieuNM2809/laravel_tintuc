@@ -11,9 +11,12 @@
                 </li>
                 <ul class="lstCat">
                     @foreach ($tl->loaitin as  $lt)
-                        <li class="list-group-item">
-                            <a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}.html">{{$lt->Ten}}</a>
-                        </li>
+                       {{-- bằng 0 là Chưa xóa --}}
+                        @if($lt->Xoa == 0)  
+                            <li class="list-group-item">
+                                <a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}.html">{{$lt->Ten}}</a>
+                            </li>
+                        @endif  
                     @endforeach
                 </ul>
              @endif

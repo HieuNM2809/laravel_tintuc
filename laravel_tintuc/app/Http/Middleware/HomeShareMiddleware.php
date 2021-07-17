@@ -18,9 +18,16 @@ class HomeShareMiddleware
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
+            // tài khoản chưa xóa 
+            if(Auth::user()->Xoa == 1 ){
+                Auth::logout();
+                return redirect('dangnhap');
+            }
+
             view()->share('user_login', Auth::user());
             return $next($request);
         }
+        
         return $next($request);
     }
 }

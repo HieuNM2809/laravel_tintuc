@@ -64,6 +64,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'AdminMiddleware' =>  \App\Http\Middleware\AdminMiddleware::class,
         'HomeMiddleware' =>  \App\Http\Middleware\HomeMiddleware::class,
-        'HomeShareMiddleware' =>  \App\Http\Middleware\HomeShareMiddleware::class
+        'HomeShareMiddleware' =>  \App\Http\Middleware\HomeShareMiddleware::class,
+        'RoleMiddleware' =>  \App\Http\Middleware\RoleMiddleware::class
+
     ];
 }

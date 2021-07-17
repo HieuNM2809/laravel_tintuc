@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TheLoai;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Redis;
 
 class TheLoaiController extends Controller
 {
 
     // get
     public function getDanhSach(){
-
+        //
+        $theloai =  TheLoai::where('Xoa',0)->get();
         return view('admin.theloai.danhsach',
-          ['theloai'=>TheLoai::all()]
+           ['theloai'=>$theloai]
         );
     }
     public function getThem(){
@@ -67,7 +70,10 @@ class TheLoaiController extends Controller
         return redirect('admin/theloai/sua/'.$id)->with('thongbao', 'Sửa thành công');
     }
     public function deleteXoa(Request $req, $id){
-        TheLoai::find($id)->delete();
+        // TheLoai::find($id)->delete();
+        $theLoai =  TheLoai::find($id);
+        $theLoai->Xoa =1;
+        $theLoai->save();
         return redirect('admin/theloai/danhsach')->with('thongbao', 'Xóa thành công');
     }
 }

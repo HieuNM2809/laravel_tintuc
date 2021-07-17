@@ -18,11 +18,12 @@ class AdminMiddleware
     {
         if(Auth::check()){
             $user = Auth::user();
-            if($user->role == 1){
-                // share cho toàn view
-                if(Auth::check()){
-                    view()->share('user_login_admin', Auth::user());
-                }
+
+            // user->Xoa : 0 là chưa xóa tài khoản , 1: là tài khoản bị xóa
+            if(($user->role == 'admin' || $user->role == 'staff')  && $user->Xoa == 0){
+                
+                // share cho toàn view=
+                view()->share('user_login_admin', Auth::user());
                 return $next($request);
             }
             else{

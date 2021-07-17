@@ -1,11 +1,11 @@
 @extends('admin.masterHome')
 @section('Content')
-    <!-- Page Content -->
-    <div id="page-wrapper">
+     <!-- Page Content -->
+     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Tin Tức
+                    <h1 class="page-header">Tin Tức chưa duyệt
                         <small>Danh sách</small>
                     </h1>
                 </div>
@@ -24,11 +24,10 @@
                             <th>Tóm tắt</th>
                             <th>Thể loại</th>
                             <th>Loại tin</th>
-                            <th>Số lượt xem</th>
                             <th>Nổi bật</th>
                             <th>Ghim</th>
-                            <th>Delete</th>
-                            <th>Edit</th>
+                            <th>Xóa</th>
+                            <th>Duyệt</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,14 +43,12 @@
                                 <th>{{$tt->TomTat}}</th>
                                 <th>{{$tt->loaitin->theloai->Ten}}</th>
                                 <th>{{$tt->loaitin->Ten}}</th>
-                                <th>{{$tt->SoLuotXem}}</th>
-                                <th>{{$tt->TrangThai}}</th>
                                 <th>
                                     {{ ($tt->NoiBat == 1)?"Có":"Không"}}
                                 </th>
                                 <th> {{ $tt->ghimTin}}</th>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/tintuc/xoa/{{$tt->id}}"> Xóa</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/sua/{{$tt->id}}">Sửa</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/tintuc/duyettintuc/{{$tt->id}}">Duyệt</a></td>
                             </tr>
                         @endforeach
                     </tbody>

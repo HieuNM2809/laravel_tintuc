@@ -16,6 +16,41 @@
             <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-heading" style="background-color:#337AB7; color:white;" >
+                        <h2 style="margin-top:0px; margin-bottom:0px;">Tin hot nhất</h2>
+                    </div>
+                    <style>
+                        .tinhotnhat_img{
+                            height: 90%;
+                            width: 90%;
+                            border-radius:5px;
+                           overflow: hidden;
+                        }
+                        .tinhotnhat_img:hover{
+                            transform:scale(1.1);
+                            transition: .5s;
+                            opacity: .8;
+                        }
+                    </style>
+                    <div class="panel-body">
+                        <!-- item -->
+                        <div class="col-md-12 border-right">
+                            <div class="col-md-8">
+                                <a href="tintuc/{{$ghimTin->id}}/{{$ghimTin->TieuDeKhongDau}}.html">
+                                    <img class="tinhotnhat_img" class="img-responsive" src="upload/tintuc/{{$ghimTin->Hinh}}" alt="{{$ghimTin->Hinh}}">
+                                </a>
+                            </div>
+            
+                            <div class="col-md-4">
+                                <h3>{{$ghimTin->TieuDe}}</h3>
+                                <p>{!!$ghimTin->TomTat!!}</p>
+                                <a class="btn btn-primary" href="tintuc/{{$ghimTin->id}}/{{$ghimTin->TieuDeKhongDau}}.html">Xem chi tiết<span class="glyphicon glyphicon-chevron-right"></span></a>
+                            </div>
+                        </div>
+                        <!-- end item -->
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="background-color:#337AB7; color:white;" >
                         <h2 style="margin-top:0px; margin-bottom:0px;">Tin tức nổi bật</h2>
                     </div>
 
@@ -27,7 +62,10 @@
                                     <h3>
                                         <a >{{$tl->Ten}}</a> |
                                         @foreach ( $tl->loaitin as  $lt)
-                                            <small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}.html"><i>{{$lt->Ten}}</i></a>/</small>
+                                        {{-- 1: đã xóa, 0:chưa xóa --}}
+                                            @if ($lt->Xoa == 0)  
+                                              <small><a href="loaitin/{{$lt->id}}/{{$lt->TenKhongDau}}.html"><i>{{$lt->Ten}}</i></a>/</small>    
+                                            @endif
                                         @endforeach
                                     </h3>
                                     {{-- Lấy 5 bài đầu ( nổi đật và thời gian mới nhất) --}}

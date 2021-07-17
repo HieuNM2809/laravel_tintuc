@@ -24,6 +24,9 @@ class TaoTinTuc extends Migration
             $table->integer('idLoaiTin')->unsigned();
             $table->foreign('idLoaiTin')->references('id')->on('LoaiTin');
             $table->timestamps();
+
+            // hm viet them
+            $table->enum('ghimTin', ['ghim', 'khongghim'])->default('khongghim');
         });
     }
 
