@@ -10,6 +10,8 @@
     <meta name="author" content="">
 
     <title>Trang chủ</title>
+    
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
 
     {{--  lay duong dan tu public  --}}
     <base href="{{asset('/')}}">

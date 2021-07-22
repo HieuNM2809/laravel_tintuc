@@ -7,6 +7,7 @@
     {{-- <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm"> --}}
     <meta name="author" content="">
     <title>Admin - Tin tức</title>
+    <link rel="shortcut icon" href="favicon-32x32.png" type="image/x-icon">
 
     {{-- khởi tại đường đẫn mặc định ở public  --}}
     <base href="{{URL::asset('/')}}" target="_top">
@@ -31,6 +32,9 @@
 
     <!-- input text css -->
     <script type="text/javascript" language="javascript" src="asset_admin/ckeditor/ckeditor.js" ></script>
+
+    <!-- css custom -->
+    <link rel="stylesheet" href="asset_admin/dist/css/customMy1.css">
 
 </head>
 

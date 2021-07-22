@@ -19,6 +19,6 @@ class RoleMiddleware
     {
         if(Auth::user()->role == 'admin')
            return $next($request);
-        return redirect('admin/theloai/danhsach')->with('thongbao','Bạn không đủ quyền truy cập');
+        return redirect('admin/trangchu ')->with('thongbao','Bạn không đủ quyền truy cập');
     }
 }

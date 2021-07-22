@@ -1,0 +1,65 @@
+/* trang chu */
+
+.box{
+    display: flex;
+    border-radius: 5px;
+    border-left: .25rem solid #4e73df;
+    padding: 10px;
+    /* background-color: rgb(223, 235, 231); */
+    box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15)!important;
+    margin-bottom: 10px;
+}
+
+.box_text {
+    margin: auto;
+    text-align: center;
+}
+
+.box_title {
+    font-weight: 700!important;
+    text-transform: uppercase!important;
+}
+
+.box_parameter {
+    color: #5a5c69!important;
+    font-weight: 700!important;
+    font-size: x-large;
+}
+.box_icon{
+    margin: auto;
+}
+.box_icon i{
+    font-weight: 900;
+    font-size: 45px;
+    margin: auto;
+    color: #dddfeb!important;
+}
+
+.trangchu__info {
+    margin-top: 10px;
+}   
+.trangchu__chart-title{
+    color: #4e73df!important;
+    padding: .75rem 1.25rem;
+    margin-bottom: 10px;
+    background-color: #f8f9fc;
+    border-bottom: 2px solid #e3e6f0;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 10px;
+}
+.trangchu__info-title {
+    color: #4e73df!important;
+    padding: .75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: #f8f9fc;
+    border-bottom: 2px solid #e3e6f0;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 10px;
+}
+
+
+.trangchu__info-img > img{
+    width: 100%;
+} 

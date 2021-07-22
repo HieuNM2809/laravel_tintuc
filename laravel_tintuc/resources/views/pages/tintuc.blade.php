@@ -33,6 +33,10 @@
             <p>{!!$tintuc->NoiDung!!}</p>
             <hr>
 
+            <!-- Views -->
+            <i><b>Số lượt xem: {!!$tintuc->SoLuotXem!!}</b></i>
+            <hr>
+
             <!-- Blog Comments -->
 
             <!-- Comments Form -->

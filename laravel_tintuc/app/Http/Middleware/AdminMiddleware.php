@@ -27,7 +27,8 @@ class AdminMiddleware
                 return $next($request);
             }
             else{
-                return redirect('admin/login');
+                Auth::logout();
+                return redirect('admin/login')->with('thongbao', 'Bạn không đủ quyền truy cập');
             }
         }
         return redirect('admin/login');

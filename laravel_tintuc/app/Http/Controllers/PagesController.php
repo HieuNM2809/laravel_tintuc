@@ -50,6 +50,11 @@ class PagesController extends Controller
         );
     }
     public function tintuc($id){
+        // update views 
+        $upView =  TinTuc::find($id);
+        $upView->SoLuotXem ++ ; 
+        $upView->save();
+
         // cache
         $tintuc = Cache::store('redis')->remember('tintuc'.$id, 600 , function () use ($id) {
             return TinTuc::find($id);

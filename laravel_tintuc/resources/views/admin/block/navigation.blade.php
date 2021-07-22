@@ -55,14 +55,19 @@
                     <!-- /input-group -->
                 </li>
                 <li>
+                    <a href="admin/trangchu"><i class="fa fa-dashboard fa-fw"></i>Trang chủ</a>
+                </li>
+                <li>
                     <a href="admin/mail/them"><i class="fa fa-paper-plane fa-fw"></i> Gửi mail quảng cáo</a>
                 </li>
                 <li>
                     <a href="admin/tintuc/ghim/them"><i class="fa fa-pinterest fa-fw"></i>Ghim tin tức</a>
                 </li>
-                <li>
-                    <a href="admin/tintuc/duyettintuc"><i class="fa fa-check-square fa-fw"></i>Duyệt tin tức</a>
-                </li>
+                @if($user_login_admin->role == 'admin')
+                    <li>
+                        <a href="admin/tintuc/duyettintuc"><i class="fa fa-check-square fa-fw"></i>Duyệt tin tức</a>
+                    </li>
+                @endif    
                 <li>
                     <a href="admin/theloai/danhsach"><i class="fa fa-bar-chart-o fa-fw"></i> Thể loại<span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level">
@@ -123,18 +128,20 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li> --}}
-                <li>
-                    <a href="admin/user/danhsach"><i class="fa fa-users fa-fw"></i>User<span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li>
-                            <a href="admin/user/danhsach">Danh sách</a>
-                        </li>
-                        <li>
-                            <a href="admin/user/them">Thêm</a>
-                        </li>
-                    </ul>
-                    <!-- /.nav-second-level -->
-                </li>
+                @if($user_login_admin->role == 'admin')
+                    <li>
+                        <a href="admin/user/danhsach"><i class="fa fa-users fa-fw"></i>User<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="admin/user/danhsach">Danh sách</a>
+                            </li>
+                            <li>
+                                <a href="admin/user/them">Thêm</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                @endif
             </ul>
         </div>
         <!-- /.sidebar-collapse -->

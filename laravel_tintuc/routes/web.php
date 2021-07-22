@@ -19,6 +19,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SlideController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\HomeAdminController;
 
 // use model
 use App\Models\TheLoai;
@@ -49,6 +50,8 @@ Route::get('admin/logout',[UserController::class , 'getAdminLogout']);
 
 // route admin
 Route::middleware(['AdminMiddleware'])->prefix('admin')->group(function () {
+    Route::get('trangchu',[HomeAdminController::class , 'getTrangChu']);
+
     Route::prefix('theloai')->group(function () {
         // admin/theloai/danhsach
         Route::get('danhsach',[TheLoaiController::class , 'getDanhSach']);
