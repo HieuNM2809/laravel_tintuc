@@ -65,7 +65,8 @@ class Kernel extends HttpKernel
         'AdminMiddleware' =>  \App\Http\Middleware\AdminMiddleware::class,
         'HomeMiddleware' =>  \App\Http\Middleware\HomeMiddleware::class,
         'HomeShareMiddleware' =>  \App\Http\Middleware\HomeShareMiddleware::class,
-        'RoleMiddleware' =>  \App\Http\Middleware\RoleMiddleware::class
+        'RoleMiddleware' =>  \App\Http\Middleware\RoleMiddleware::class,
+        'RedirectAdminLoginMiddleware' =>  \App\Http\Middleware\RedirectAdminLoginMiddleware::class,
 
     ];
 }

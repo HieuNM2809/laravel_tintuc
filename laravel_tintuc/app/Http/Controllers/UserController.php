@@ -23,7 +23,7 @@ class UserController extends Controller
             'password.required' =>'Vui lòng nhập mật khẩu'
         ] );
        if(Auth::attempt(['email'=> $req->email , 'password' =>$req->password])){
-             return redirect('admin/theloai/danhsach');
+             return redirect('admin/trangchu');
        }else{
           return redirect('admin/login')->with('thongbao','Đăng nhập thất bại !!!');
        }

@@ -28,7 +28,7 @@ class AdminMiddleware
             }
             else{
                 Auth::logout();
-                return redirect('admin/login')->with('thongbao', 'Bạn không đủ quyền truy cập');
+                return redirect('admin/login')->with('thongbao', 'Bạn không đủ quyền truy cập')->with('veTrangChu', 'Nhấn vào đây để về trang chủ');
             }
         }
         return redirect('admin/login');

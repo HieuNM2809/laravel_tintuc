@@ -16,6 +16,7 @@ use App\Rules\Captcha;
 
 use Illuminate\Contracts\Cache\Factory;
 use Illuminate\Support\Facades\Cache;
+use App\Models\ThongKe;
 
 use App\Events\RegisteredEvent;
 
@@ -50,6 +51,41 @@ class PagesController extends Controller
         );
     }
     public function tintuc($id){
+         //==================================lưu vào bảng thống kê 
+        //kiểm tra xem có dòng đó chưa
+        $checkRecordDateExist = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->count();
+        $checkRecordMonthExist = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
+                                         ->whereMonth('thangnam', date('m',strtotime(now())) )   
+                                         ->count();
+        
+        // nếu chưa có thì thêm mới  ( thêm ngày)
+        if($checkRecordDateExist == 0){
+            $thongKe = new ThongKe();
+            $thongKe->ngaythangnam = date('Y-m-d');
+            $thongKe->luotxemngay = 1;
+            $thongKe->save();
+        }else{
+            // có dòng rồi 
+            $thongKe = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->first();
+            $thongKe->luotxemngay  += 1;
+            $thongKe->save();
+        }     
+        // nếu chưa có thì thêm mới  ( thêm ngày)
+        if($checkRecordMonthExist == 0){
+            $thongKe = new ThongKe();
+            $thongKe->thangnam = date('Y-m-d');
+            $thongKe->luotxemthang = 1;
+            $thongKe->save();
+        }else{
+            // có dòng rồi 
+            $thongKe = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
+                                ->whereMonth('thangnam', date('m',strtotime(now())) )
+                                ->first();
+            $thongKe->luotxemthang  += 1;
+            $thongKe->save();
+
+        }          
+
         // update views 
         $upView =  TinTuc::find($id);
         $upView->SoLuotXem ++ ; 
@@ -118,6 +154,43 @@ class PagesController extends Controller
             'passwordAgain.required' =>'Vui lòng nhập xác nhận password',
             'passwordAgain.same' =>'Nhập lại password sai'
         ]); 
+
+          //==================================lưu vào bảng thống kê 
+        //kiểm tra xem có dòng đó chưa
+        $checkRecordDateExist = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->count();
+        $checkRecordMonthExist = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
+                                         ->whereMonth('thangnam', date('m',strtotime(now())) )   
+                                         ->count();
+        
+        // nếu chưa có thì thêm mới  ( thêm ngày)
+        if($checkRecordDateExist == 0){
+            $thongKe = new ThongKe();
+            $thongKe->ngaythangnam = date('Y-m-d');
+            $thongKe->dangkyngay = 1;
+            $thongKe->save();
+        }else{
+            // có dòng rồi 
+            $thongKe = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->first();
+            $thongKe->dangkyngay  += 1;
+            $thongKe->save();
+        }     
+        // nếu chưa có thì thêm mới  ( thêm ngày)
+        if($checkRecordMonthExist == 0){
+            $thongKe = new ThongKe();
+            $thongKe->thangnam = date('Y-m-d');
+            $thongKe->dangkythang = 1;
+            $thongKe->save();
+        }else{
+            // có dòng rồi 
+            $thongKe = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
+                                ->whereMonth('thangnam', date('m',strtotime(now())) )
+                                ->first();
+            $thongKe->dangkythang  += 1;
+            $thongKe->save();
+
+        }   
+
+
 
         // lưu thông tin
          $user = new  User();
@@ -207,6 +280,42 @@ class PagesController extends Controller
         $phanhoi->idUser = Auth::user()->id;
         $phanhoi->NoiDung = $req->txtPhanHoi;
         $phanhoi->save();
+
+        //==================================lưu vào bảng thống kê 
+        //kiểm tra xem có dòng đó chưa
+        $checkRecordDateExist = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->count();
+        $checkRecordMonthExist = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
+                                         ->whereMonth('thangnam', date('m',strtotime(now())) )   
+                                         ->count();
+        
+        // nếu chưa có thì thêm mới  ( thêm ngày)
+        if($checkRecordDateExist == 0){
+            $thongKe = new ThongKe();
+            $thongKe->ngaythangnam = date('Y-m-d');
+            $thongKe->phanhoingay = 1;
+            $thongKe->save();
+        }else{
+            // có dòng rồi 
+            $thongKe = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->first();
+            $thongKe->phanhoingay  += 1;
+            $thongKe->save();
+        }     
+        // nếu chưa có thì thêm mới  ( thêm ngày)
+        if($checkRecordMonthExist == 0){
+            $thongKe = new ThongKe();
+            $thongKe->thangnam = date('Y-m-d');
+            $thongKe->phanhoithang = 1;
+            $thongKe->save();
+        }else{
+            // có dòng rồi 
+            $thongKe = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
+                                ->whereMonth('thangnam', date('m',strtotime(now())) )
+                                ->first();
+            $thongKe->phanhoithang  += 1;
+            $thongKe->save();
+
+        }                                
+
 
         return redirect('phanhoi')->with('thongbao', 'Gửi thành công, cảm ơn bạn đã phản hồi !!');
     }

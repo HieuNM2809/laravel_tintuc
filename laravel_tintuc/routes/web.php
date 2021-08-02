@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 // middleware
 use App\Http\Middleware\AdminMiddleware;
@@ -28,9 +30,12 @@ use App\Models\TinTuc;
 use App\Models\Comment;
 use App\Models\User;
 use App\Models\Slide;
+use App\Models\ThongKe;
 
 // cache
 use Illuminate\Support\Facades\Cache;
+use Symfony\Component\VarDumper\Cloner\Data;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,8 +47,8 @@ use Illuminate\Support\Facades\Cache;
 |
 */
 // dang nhap admin
-Route::get('admin/login',[UserController::class , 'getAdminLogin']);
-Route::post('admin/login',[UserController::class , 'postAdminLogin']);
+Route::get('admin/login',[UserController::class , 'getAdminLogin'])->middleware('RedirectAdminLoginMiddleware');
+Route::post('admin/login',[UserController::class , 'postAdminLogin'])->middleware('RedirectAdminLoginMiddleware');
 
 // dang xuat admin
 Route::get('admin/logout',[UserController::class , 'getAdminLogout']);
@@ -181,6 +186,7 @@ Route::post('dangnhap', [PagesController::class , 'postdangnhap'] );
 
 
 
+// =============================================== test
 
 Route::get('test', function () {
    echo env('APP_DOMAIN');
@@ -189,3 +195,23 @@ Route::get('test', function () {
 Route::get('viewSendMail', function () {
     return view('mail.thongBaoDangKyThanhCong');
 }); 
+
+
+Route::get('tryCatch', function () {
+    try {
+      echo 'hieu';
+    } catch (\Throwable $th) {
+        echo 'cacth';
+    }
+});
+Route::get('log', function () {
+    Log::channel('sendMailAll')->info('test ne 45');
+     echo 'ok';
+});
+Route::get('thongketest', function () {
+   $checkRecordDateExist = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->count();
+   $checkRecordMonthExist = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
+                                    ->whereMonth('thangnam', date('m',strtotime(now())) )   
+                                    ->count();
+
+});

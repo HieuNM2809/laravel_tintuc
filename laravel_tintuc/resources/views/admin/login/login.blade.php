@@ -22,7 +22,12 @@
 
     <!-- Custom Fonts -->
     <link href="asset_admin/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
+    <style>
+        a:hover, a:focus {
+            color: #23527c;
+            text-decoration: none;
+        }
+    </style>
 </head>
 
 <body>
@@ -49,6 +54,17 @@
                             <div class="alert alert-success">
                                 {{ session('thongbao') }}
                             </div>
+                        @endif
+                        {{-- Thông báo về trang chủ --}}
+                        @if (session('veTrangChu'))
+                            <div class="alert alert-success">
+                                <a href="trangchu">
+                                    <button type="button" class="btn btn-lg btn-danger btn-block">
+                                        {{ session('veTrangChu') }}
+                                    </button>
+                                </a>
+                            </div>
+                           
                         @endif
                         <form role="form" action="admin/login" method="POST">
                             @csrf

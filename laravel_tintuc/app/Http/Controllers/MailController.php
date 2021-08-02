@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use App\Jobs\sendMailAllJob;
 class MailController extends Controller
 {
     //
@@ -55,26 +56,28 @@ class MailController extends Controller
             // gửi tất cả
 
             // chuyen data gmail sang mang
-            $lstuserGmail = User::where('role','0')->get();
+            $lstuserGmail = User::where('role','user')->get();
             // chuyen sang mang
             foreach ($lstuserGmail as $ug) {
                 $email[] =  $ug->email;
             }   
 
         }
-        
-        
-        Mail::send('mail.thongbaotinmoi',$data , function ($message) use ($email){
-            $message->from('nguyenminhhieu28092001k3@gmail.com', 'Hieu Minh');
-            $message->to($email, 'Bạn');
-            $message->subject('Tin tức mới bởi HM news');
+        // queue :  goi job
+        dispatch(new sendMailAllJob($data, $email));
 
-            // $message->attach( $req->file('txtFile')->getRealPath(), [
-            //     'as' => $req->file('txtFile')->getClientOriginalName(),
-            //     'mime' =>  $req->file('txtFile')->getMimeType()
-            //  ]);
-        });
-      return redirect('admin/mail/them')->with('thongbao','Gửi thành công');
+        // Mail::send('mail.thongbaotinmoi',$data , function ($message) use ($email){
+        //     $message->from('nguyenminhhieu28092001k3@gmail.com', 'Hieu Minh');
+        //     $message->to($email, 'Bạn');
+        //     $message->subject('Tin tức mới bởi HM news');
+
+        //     // $message->attach( $req->file('txtFile')->getRealPath(), [
+        //     //     'as' => $req->file('txtFile')->getClientOriginalName(),
+        //     //     'mime' =>  $req->file('txtFile')->getMimeType()
+        //     //  ]);
+        // });
+
+       return redirect('admin/mail/them')->with('thongbao','Gửi thành công');
         
 
         

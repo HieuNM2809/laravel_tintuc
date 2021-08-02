@@ -46,6 +46,12 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
         ],
+        // thêm log 
+        'sendMailAll' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/sendMailAll.log'),
+        ],
+        // end log 
 
         'daily' => [
             'driver' => 'daily',
@@ -100,6 +106,7 @@ return [
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
         ],
+        
     ],
 
 ];
