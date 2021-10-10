@@ -189,9 +189,6 @@ class PagesController extends Controller
             $thongKe->save();
 
         }   
-
-
-
         // lưu thông tin
          $user = new  User();
          $user->name = $req->name;

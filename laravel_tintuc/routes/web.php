@@ -46,6 +46,7 @@ use Symfony\Component\VarDumper\Cloner\Data;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 // dang nhap admin
 Route::get('admin/login',[UserController::class , 'getAdminLogin'])->middleware('RedirectAdminLoginMiddleware');
 Route::post('admin/login',[UserController::class , 'postAdminLogin'])->middleware('RedirectAdminLoginMiddleware');
@@ -131,6 +132,7 @@ Route::middleware(['AdminMiddleware'])->prefix('admin')->group(function () {
         //xoa
         Route::get('xoa/{id}',[SlideController::class , 'deleteXoa']);
     });
+ 
     Route::middleware(['RoleMiddleware'])->prefix('user')->group(function () {
         // lay
         Route::get('danhsach',[UserController::class , 'getDanhSach']);

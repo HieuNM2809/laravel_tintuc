@@ -23,7 +23,7 @@
                             height: 90%;
                             width: 90%;
                             border-radius:5px;
-                           overflow: hidden;
+                            overflow: hidden;
                         }
                         .tinhotnhat_img:hover{
                             transform:scale(1.1);
@@ -98,7 +98,6 @@
                                             </a>
                                         @endforeach
                                     </div>
-
                                     <div class="break"></div>
                                 </div>
                             @endif

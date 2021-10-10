@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
+
     // dang nhap
     public function getAdminLogin(){
         return view('admin.login.login');

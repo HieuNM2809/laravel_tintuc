@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Redis;
 
 class TheLoaiController extends Controller
 {
-
     // get
     public function getDanhSach(){
         //

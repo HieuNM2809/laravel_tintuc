@@ -49,7 +49,6 @@ class MailController extends Controller
                 if ( !preg_match ("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+\.[A-Za-z]{2,6}$/", $st)) 
                      return redirect('admin/mail/them')->with('thongbao','Sai định dạng email gửi');
             }
-
             $email  =  $subStr;
         }
         else{
@@ -76,7 +75,6 @@ class MailController extends Controller
         //     //     'mime' =>  $req->file('txtFile')->getMimeType()
         //     //  ]);
         // });
-
        return redirect('admin/mail/them')->with('thongbao','Gửi thành công');
         
 
