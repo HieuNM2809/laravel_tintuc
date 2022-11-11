@@ -16,7 +16,7 @@ class TaoTheLoai extends Migration
             $table->increments('id');
             $table->string('Ten');
             $table->string('TenKhongDau');
-            $table->bit('Xoa')->default(0);
+            $table->boolean('Xoa')->default(0);
             $table->timestamps();
         });
     }
