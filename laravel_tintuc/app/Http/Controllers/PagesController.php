@@ -42,22 +42,22 @@ class PagesController extends Controller
     public function loaitin($id){
 
         $loaitin =  LoaiTin::find($id);
-        
+
         $tintuc = TinTuc::where('idLoaiTin','=',$id)->paginate(5);
-        
+
         return view('pages.loaitin',[
             'loaitin'=>$loaitin,
             'tintuc'=>$tintuc]
         );
     }
     public function tintuc($id){
-         //==================================lưu vào bảng thống kê 
+         //==================================lưu vào bảng thống kê
         //kiểm tra xem có dòng đó chưa
         $checkRecordDateExist = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->count();
         $checkRecordMonthExist = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
-                                         ->whereMonth('thangnam', date('m',strtotime(now())) )   
+                                         ->whereMonth('thangnam', date('m',strtotime(now())) )
                                          ->count();
-        
+
         // nếu chưa có thì thêm mới  ( thêm ngày)
         if($checkRecordDateExist == 0){
             $thongKe = new ThongKe();
@@ -65,11 +65,11 @@ class PagesController extends Controller
             $thongKe->luotxemngay = 1;
             $thongKe->save();
         }else{
-            // có dòng rồi 
+            // có dòng rồi
             $thongKe = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->first();
             $thongKe->luotxemngay  += 1;
             $thongKe->save();
-        }     
+        }
         // nếu chưa có thì thêm mới  ( thêm ngày)
         if($checkRecordMonthExist == 0){
             $thongKe = new ThongKe();
@@ -77,18 +77,18 @@ class PagesController extends Controller
             $thongKe->luotxemthang = 1;
             $thongKe->save();
         }else{
-            // có dòng rồi 
+            // có dòng rồi
             $thongKe = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
                                 ->whereMonth('thangnam', date('m',strtotime(now())) )
                                 ->first();
             $thongKe->luotxemthang  += 1;
             $thongKe->save();
 
-        }          
+        }
 
-        // update views 
+        // update views
         $upView =  TinTuc::find($id);
-        $upView->SoLuotXem ++ ; 
+        $upView->SoLuotXem ++ ;
         $upView->save();
 
         // cache
@@ -104,7 +104,7 @@ class PagesController extends Controller
 
         //view
         return view('pages.tintuc',[
-            'tintuc'      => $tintuc, 
+            'tintuc'      => $tintuc,
             'tinnoibat'   =>$tinnoibat ,
             'tinlienquan' => $tinlienquan
             ]);
@@ -114,7 +114,7 @@ class PagesController extends Controller
     }
     public function lienhe(){
         return view('pages.lienhe');
-    }   
+    }
     public function timkiem(Request $req){
         $this->validate($req, [
                 'key' => 'required'
@@ -125,9 +125,9 @@ class PagesController extends Controller
                                 ->orWhere('NoiDung', 'like', "%$key%")
                                 ->orderBy('created_at','DESC')
                                 ->paginate(5);
-        $tintuc->appends(['key' => $key]);                        
+        $tintuc->appends(['key' => $key]);
         return view('pages.timkiem',['tintuc'=>$tintuc, 'key'=>$key]);
-        
+
     }
 
 
@@ -153,15 +153,15 @@ class PagesController extends Controller
             'password.max' =>'Password tối thiểu 2 kí tự và nhiều nhất 32 kí tự',
             'passwordAgain.required' =>'Vui lòng nhập xác nhận password',
             'passwordAgain.same' =>'Nhập lại password sai'
-        ]); 
+        ]);
 
-          //==================================lưu vào bảng thống kê 
+          //==================================lưu vào bảng thống kê
         //kiểm tra xem có dòng đó chưa
         $checkRecordDateExist = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->count();
         $checkRecordMonthExist = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
-                                         ->whereMonth('thangnam', date('m',strtotime(now())) )   
+                                         ->whereMonth('thangnam', date('m',strtotime(now())) )
                                          ->count();
-        
+
         // nếu chưa có thì thêm mới  ( thêm ngày)
         if($checkRecordDateExist == 0){
             $thongKe = new ThongKe();
@@ -169,11 +169,11 @@ class PagesController extends Controller
             $thongKe->dangkyngay = 1;
             $thongKe->save();
         }else{
-            // có dòng rồi 
+            // có dòng rồi
             $thongKe = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->first();
             $thongKe->dangkyngay  += 1;
             $thongKe->save();
-        }     
+        }
         // nếu chưa có thì thêm mới  ( thêm ngày)
         if($checkRecordMonthExist == 0){
             $thongKe = new ThongKe();
@@ -181,14 +181,14 @@ class PagesController extends Controller
             $thongKe->dangkythang = 1;
             $thongKe->save();
         }else{
-            // có dòng rồi 
+            // có dòng rồi
             $thongKe = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
                                 ->whereMonth('thangnam', date('m',strtotime(now())) )
                                 ->first();
             $thongKe->dangkythang  += 1;
             $thongKe->save();
 
-        }   
+        }
         // lưu thông tin
          $user = new  User();
          $user->name = $req->name;
@@ -201,7 +201,7 @@ class PagesController extends Controller
         $pass = $req->password;
          event(new RegisteredEvent($user, $pass));
 
-        //thong bao 
+        //thong bao
          return redirect('dangky')->with('thongbao','Tạo tài khoản thành công !!');
     }
 
@@ -221,7 +221,7 @@ class PagesController extends Controller
 
        if(Auth::attempt(['email' => $req->email, 'password' => $req->password])){
             return redirect('trangchu');
-        }   
+        }
         return redirect('dangnhap')->with('thongbao', 'Đăng nhập thất bại');
     }
 
@@ -278,13 +278,13 @@ class PagesController extends Controller
         $phanhoi->NoiDung = $req->txtPhanHoi;
         $phanhoi->save();
 
-        //==================================lưu vào bảng thống kê 
+        //==================================lưu vào bảng thống kê
         //kiểm tra xem có dòng đó chưa
         $checkRecordDateExist = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->count();
         $checkRecordMonthExist = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
-                                         ->whereMonth('thangnam', date('m',strtotime(now())) )   
+                                         ->whereMonth('thangnam', date('m',strtotime(now())) )
                                          ->count();
-        
+
         // nếu chưa có thì thêm mới  ( thêm ngày)
         if($checkRecordDateExist == 0){
             $thongKe = new ThongKe();
@@ -292,11 +292,11 @@ class PagesController extends Controller
             $thongKe->phanhoingay = 1;
             $thongKe->save();
         }else{
-            // có dòng rồi 
+            // có dòng rồi
             $thongKe = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->first();
             $thongKe->phanhoingay  += 1;
             $thongKe->save();
-        }     
+        }
         // nếu chưa có thì thêm mới  ( thêm ngày)
         if($checkRecordMonthExist == 0){
             $thongKe = new ThongKe();
@@ -304,14 +304,14 @@ class PagesController extends Controller
             $thongKe->phanhoithang = 1;
             $thongKe->save();
         }else{
-            // có dòng rồi 
+            // có dòng rồi
             $thongKe = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
                                 ->whereMonth('thangnam', date('m',strtotime(now())) )
                                 ->first();
             $thongKe->phanhoithang  += 1;
             $thongKe->save();
 
-        }                                
+        }
 
 
         return redirect('phanhoi')->with('thongbao', 'Gửi thành công, cảm ơn bạn đã phản hồi !!');
