@@ -39,7 +39,7 @@ class TinTucController extends Controller
         $this->validate($req,
         [
             'idLoaiTin' => 'required',
-            'TieuDe'    => 'required|min:3|unique:tintuc,TieuDe',
+            'TieuDe'    => 'required|min:3|unique:TinTuc,TieuDe',
             'TomTat'    => 'required',
             'NoiDung'   => 'required',
             'Hinh'      => 'image|mimes:jpeg,png,jpg,gif,svg|max:4086',
@@ -150,7 +150,7 @@ class TinTucController extends Controller
     }
 
 
-    // ghim tin 
+    // ghim tin
 
     public function getGhim(){
         $tintuc = Cache::remember('tintucAll', 600 , function () {
@@ -160,7 +160,7 @@ class TinTucController extends Controller
     }
     public function  postGhim(Request $req){
        $tinTuc = TinTuc::find($req->tintuc);
-       $tinTuc->ghimTin = 'ghim'; 
+       $tinTuc->ghimTin = 'ghim';
        $tinTuc->save();
        return redirect('admin/tintuc/ghim/them')->with('thongbao','Ghim tin thành công');
     }
@@ -173,7 +173,7 @@ class TinTucController extends Controller
            echo  "<option value='".$tt->id."'>".$tt->TieuDe."</option>";
     }
 
-    // duyệt tin tức 
+    // duyệt tin tức
     public function getDuyetTinTuc(){
         $tinTuc = TinTuc::where('TrangThai','notApprovedYet')->get();
         return view('admin.tintuc.duyetTinTuc', ['tintuc' => $tinTuc]);

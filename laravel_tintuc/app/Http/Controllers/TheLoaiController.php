@@ -30,7 +30,7 @@ class TheLoaiController extends Controller
         // Kiểm tra dữ liệu đầu vào
         $this->validate($req,
             [
-                'Ten'=>'required|min:3|max:100|unique:theloai,Ten'
+                'Ten'=>'required|min:3|max:100|unique:TheLoai,Ten'
             ],[
                 'Ten.required' => 'Hãy nhập thông tin',
                 'Ten.min'      => 'Hãy nhập ít nhất 3 ký tự và nhiều nhất 100 ký tự',
@@ -51,7 +51,7 @@ class TheLoaiController extends Controller
         // Kiểm tra dữ liệu đầu vào
         $this->validate($req,
             [
-                'Ten'=>'required|min:3|max:100|unique:theloai,Ten'
+                'Ten'=>'required|min:3|max:100|unique:TheLoai,Ten'
             ],[
                 'Ten.required' => 'Hãy nhập thông tin',
                 'Ten.min'      => 'Hãy nhập ít nhất 3 ký tự và nhiều nhất 100 ký tự',

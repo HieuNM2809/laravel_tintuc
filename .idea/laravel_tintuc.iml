@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/laravel_tintuc/app" isTestSource="false" packagePrefix="App\" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel_tintuc/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel_tintuc/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
+      <sourceFolder url="file://$MODULE_DIR$/laravel_tintuc/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/nette/utils" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/swiftmailer/swiftmailer" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/nette/schema" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/opis/closure" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/finder" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/deprecation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-mbstring" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/css-selector" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-intl-normalizer" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/routing" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-intl-grapheme" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-ctype" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-php72" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-php80" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/predis/predis" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/mime" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-php73" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-intl-idn" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/error-handler" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/event-dispatcher-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/var-dumper" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/console" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-iconv" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/brick/math" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/http-kernel" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/translation-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/http-foundation" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/polyfill-php81" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/translation" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/process" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/service-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/symfony/string" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/asm89/stack-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/psy/psysh" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/fakerphp/faker" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/filp/whoops" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/fideloper/proxy" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phar-io/manifest" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phar-io/version" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/fruitcake/laravel-cors" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phpoption/phpoption" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/ralouphie/getallheaders" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phpunit/php-file-iterator" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phpunit/php-timer" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phpunit/php-text-template" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phpunit/php-invoker" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phpunit/php-code-coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/phpunit/phpunit" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/diff" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/guzzlehttp/guzzle" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/lines-of-code" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/guzzlehttp/promises" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/type" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/guzzlehttp/psr7" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/code-unit" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/exporter" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/object-enumerator" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/comparator" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/laravel/framework" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/complexity" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/recursion-context" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/laravel/tinker" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/myclabs/deep-copy" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/cli-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/laravel/serializable-closure" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/environment" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/laravel/sail" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/code-unit-reverse-lookup" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/psr/log" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/resource-operations" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/global-state" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/psr/http-message" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/psr/event-dispatcher" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/psr/container" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/sebastian/object-reflector" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/psr/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/psr/simple-cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/psr/http-factory" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/mockery/mockery" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/league/mime-type-detection" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/league/flysystem" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/league/config" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/league/commonmark" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/facade/flare-client-php" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/facade/ignition" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/facade/ignition-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/ramsey/collection" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/nesbot/carbon" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/egulias/email-validator" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/theseer/tokenizer" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/nikic/php-parser" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/google/recaptcha" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/dflydev/dot-access-data" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/nunomaduro/collision" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/doctrine/instantiator" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/doctrine/inflector" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/tijsverkoyen/css-to-inline-styles" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/doctrine/lexer" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/dragonmantank/cron-expression" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/monolog/monolog" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/voku/portable-ascii" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/graham-campbell/result-type" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel_tintuc/vendor/vlucas/phpdotenv" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -12,7 +12,7 @@ class LoaiTinController extends Controller
 {
       // get
     public function getDanhSach(){
-        
+
         $loaitin = LoaiTin::where('Xoa',0)->get();
         return view('admin.loaitin.danhsach',
            ['loaitin'=> $loaitin]
@@ -33,7 +33,7 @@ class LoaiTinController extends Controller
         // Kiểm tra dữ liệu đầu vào
         $this->validate($req,
             [
-                'Ten'=>'required|min:3|max:100|unique:loaitin,Ten'
+                'Ten'=>'required|min:3|max:100|unique:LoaiTin,Ten'
             ],[
                 'Ten.required' => 'Hãy nhập thông tin',
                 'Ten.min'      => 'Hãy nhập ít nhất 3 ký tự và nhiều nhất 100 ký tự',

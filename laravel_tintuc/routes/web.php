@@ -51,6 +51,10 @@ use Symfony\Component\VarDumper\Cloner\Data;
 Route::get('admin/login',[UserController::class , 'getAdminLogin'])->middleware('RedirectAdminLoginMiddleware');
 Route::post('admin/login',[UserController::class , 'postAdminLogin'])->middleware('RedirectAdminLoginMiddleware');
 
+Route::fallback(function () {
+    return redirect('/trangchu');
+});
+
 // dang xuat admin
 Route::get('admin/logout',[UserController::class , 'getAdminLogout']);
 
@@ -110,10 +114,10 @@ Route::middleware(['AdminMiddleware'])->prefix('admin')->group(function () {
         });
         Route::get('ajaxTinTuc/{val}',[TinTucController::class , 'ajaxTinTuc']);
 
-        // duyet tin 
+        // duyet tin
         Route::middleware(['RoleMiddleware'])->get('duyettintuc',[TinTucController::class , 'getDuyetTinTuc']);
         Route::middleware(['RoleMiddleware'])->get('duyettintuc/{id}',[TinTucController::class , 'postDuyetTinTuc']);
-       
+
     });
     Route::prefix('comment')->group(function () {
         //xoa
@@ -132,7 +136,7 @@ Route::middleware(['AdminMiddleware'])->prefix('admin')->group(function () {
         //xoa
         Route::get('xoa/{id}',[SlideController::class , 'deleteXoa']);
     });
- 
+
     Route::middleware(['RoleMiddleware'])->prefix('user')->group(function () {
         // lay
         Route::get('danhsach',[UserController::class , 'getDanhSach']);
@@ -196,7 +200,7 @@ Route::get('test', function () {
 
 Route::get('viewSendMail', function () {
     return view('mail.thongBaoDangKyThanhCong');
-}); 
+});
 
 
 Route::get('tryCatch', function () {
@@ -213,7 +217,7 @@ Route::get('log', function () {
 Route::get('thongketest', function () {
    $checkRecordDateExist = ThongKe::where('ngaythangnam', date('Y-m-d',strtotime(now())) )->count();
    $checkRecordMonthExist = ThongKe::whereYear('thangnam', date('Y',strtotime(now())) )
-                                    ->whereMonth('thangnam', date('m',strtotime(now())) )   
+                                    ->whereMonth('thangnam', date('m',strtotime(now())) )
                                     ->count();
 
 });

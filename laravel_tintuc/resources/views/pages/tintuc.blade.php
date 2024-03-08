@@ -60,13 +60,13 @@
                     </div>
                 </div>
             @endif
-            
+
 
             <hr>
             <h2>Danh sách bình luận</h2>
             <!-- Posted Comments -->
-            <?php  
-            // xep binh luan lai 
+            <?php
+            // xep binh luan lai
             $ttComment = $tintuc->comment->sortByDesc('id')->take(5);
             ?>
            <div id="lstCom">
@@ -82,7 +82,7 @@
                                 {{ $cm->user->name}}
                                     <small>
                                         {{$cm->created_at->format('H:i')}}
-                                        giờ, Ngày 
+                                        giờ, Ngày
                                         {{$cm->created_at->format('d-m-Y')}}
                                     </small>
                                 </h4>
@@ -91,10 +91,10 @@
                         </div>
                     @endforeach
                 @else
-                    <div style="text-align: center;font-size: 20px">Chưa có bình luận nào !!!!</div>       
+                    <div style="text-align: center;font-size: 20px">Chưa có bình luận nào !!!!</div>
                 @endif
            </div>
-                    
+
         </div>
 
         <!-- Blog Sidebar Widgets Column -->
@@ -121,7 +121,7 @@
                         </div>
                         <!-- end item -->
                     @endforeach
-                    
+
                 </div>
             </div>
 
@@ -149,7 +149,7 @@
                 @endforeach
                 </div>
             </div>
-            
+
         </div>
 
     </div>
